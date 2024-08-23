@@ -6,6 +6,8 @@
         <div class="mt-2">
           <p>{{ qna.answer }}</p>
         </div>
+        <button class="btn btn-sm btn-secondary me-2" (click)="this.editQna.emit(qna)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="this.deleteQna.emit(qna)">Delete</button>
       }
     </li>
   }

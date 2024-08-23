@@ -18,6 +18,7 @@ import { QnaService } from './qna.service';
 })
 export class AppComponent implements OnInit {
   qnas: WritableSignal<any> = signal([]);
+  selectedQna: WritableSignal<any> = signal(null);
 
   private qnaService: QnaService = inject(QnaService);
 
@@ -27,6 +28,24 @@ export class AppComponent implements OnInit {
 
   onAddQna(qna: any): void {
     this.qnaService.addQna(qna.question, qna.answer).subscribe(() => {
+      this.fetchQnas();
+    });
+  }
+
+  onEditQna(qna: any): void {
+    this.selectedQna.set(qna);
+  }
+
+  onUpdateQna(qna: any): void {
+    this.qnaService
+      .updateQna(qna._id, { question: qna.question, answer: qna.answer })
+      .subscribe(() => {
+        this.fetchQnas();
+      });
+  }
+
+  onDeleteQna(qna: any): void {
+    this.qnaService.deleteQna(qna._id).subscribe(() => {
       this.fetchQnas();
     });
   }
