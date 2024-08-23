@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="exampleInputQ" class="form-label">Question</label>
+    <input
+      type="text"
+      class="form-control"
+      id="exampleInputQ"
+      formControlName="question"
+      name="question"
+      aria-describedby="qHelp"
+    >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputA" class="form-label">Answer</label>
+    <textarea
+      class="form-control"
+      id="exampleInputA"
+      formControlName="answer"
+      name="answer"
+      aria-describedby="aHelp"
+      rows="3"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>

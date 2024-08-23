@@ -1,0 +1,12 @@
+<ul class="list-group">
+  @for (qna of questions; track qna; let i = $index) {
+    <li class="list-group-item" (click)="toggleAnswer(i)" style="cursor: pointer;">
+      <strong>{{ qna.question }}</strong>
+      @if (qna.showAnswer) {
+        <div class="mt-2">
+          <p>{{ qna.answer }}</p>
+        </div>
+      }
+    </li>
+  }
+</ul>
