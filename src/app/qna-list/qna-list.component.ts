@@ -1,25 +1,20 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { QnaService } from '../qna.service';
+import { Component, computed, input, InputSignal, Signal } from '@angular/core';
 
 @Component({
   selector: 'app-qna-list',
   standalone: true,
   imports: [],
   templateUrl: './qna-list.component.html',
-  styleUrl: './qna-list.component.scss'
+  styleUrl: './qna-list.component.scss',
 })
-export class QnaListComponent implements OnInit {
-  questions: { question: string, answer: string, showAnswer: boolean }[] = [];
+export class QnaListComponent {
+  qnas: InputSignal<any> = input.required<any>();
 
-  private qnaService: QnaService = inject(QnaService);
-
-  ngOnInit(): void {
-    this.qnaService.getQnas().subscribe((qnas) => {
-      this.questions = qnas;
-    })
-  }
+  questions: Signal<any> = computed(() =>
+    this.qnas().map((entry: any) => ({ ...entry, showAnswer: false })),
+  );
 
   toggleAnswer(index: number) {
-    this.questions[index].showAnswer = !this.questions[index].showAnswer;
+    this.questions()[index].showAnswer = !this.questions()[index].showAnswer;
   }
 }

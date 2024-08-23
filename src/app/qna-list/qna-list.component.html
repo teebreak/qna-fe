@@ -1,5 +1,5 @@
 <ul class="list-group">
-  @for (qna of questions; track qna; let i = $index) {
+  @for (qna of questions(); track qna; let i = $index) {
     <li class="list-group-item" (click)="toggleAnswer(i)" style="cursor: pointer;">
       <strong>{{ qna.question }}</strong>
       @if (qna.showAnswer) {

@@ -2,15 +2,15 @@
   <h3 class="mb-5 mt-5">Welcome to our support management</h3>
   <div class="row mb-5">
     <div class="col-12">
-      <app-qna-form (qnaAdded)="onQnaAdded()"/>
+      <app-qna-form (submit)="onAddQna($event)"/>
     </div>
   </div>
 
   <hr>
 
-    <div class="row mb-5">
-      <div class="col-12">
-        <app-qna-list />
-      </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-qna-list [qnas]="qnas()" />
     </div>
   </div>
+</div>

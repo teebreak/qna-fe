@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QnaService {
-  private apiUrl = 'http://localhost:3000/qna';
+  private apiUrl = `${environment.apiUrl}/qna`;
 
   private http: HttpClient = inject(HttpClient);
 
@@ -19,12 +20,15 @@ export class QnaService {
     return this.http.post<any>(this.apiUrl, newQna);
   }
 
-  updateQna(id: string, updatedQna: { question?: string, answer?: string }): Observable<any> {
+  updateQna(
+    id: string,
+    updatedQna: { question?: string; answer?: string },
+  ): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/${id}`, updatedQna);
   }
 
   setEditing(id: string, isEditing: boolean): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${id}`, {isEditing});
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, { isEditing });
   }
 
   deleteQna(id: string): Observable<any> {
